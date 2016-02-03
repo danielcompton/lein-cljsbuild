@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 pushd support
 lein do clean, deploy clojars

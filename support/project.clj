@@ -12,6 +12,17 @@
      [fs "1.1.2"]
      [clj-stacktrace "0.2.5"]]
   :aot [cljsbuild.test]
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version" "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag"]
+                  #_["deploy"]
+                  ["change" "version" "leiningen.release/bump-version"]
+                  ["vcs" "commit"]
+                  ["vcs" "push"]]
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
+  :vcs :git ; We specify :vcs here because our git root isn't at the same level as our project.clj
   :profiles {
     :dev {
       :dependencies [[midje "1.6.3"]]
